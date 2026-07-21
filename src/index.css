@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Cairo", "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --accent-cyan: #00d4ff;
+  --bg-dark: #0a0a0c;
+  --panel-bg: #16161a;
+  --border-color: #2a2a30;
+  --text-muted: #8e8e93;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-dark);
+}
+
+@layer components {
+  /* ULTRA-PREMIUM GLASSMORPHISM BUTTONS */
+  .btn-glass-premium {
+    @apply relative overflow-hidden flex items-center justify-center transition-all duration-300;
+    
+    /* Rounded corners (18-24px radius) */
+    border-radius: 20px;
+    
+    /* Semi-transparent glass material & Premium glass gradients */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+    
+    /* Frosted blur background (20-40px blur) */
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    
+    /* Thin white glossy border */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* Soft shadows, Soft inner glow, Outer blue glow, Blue neon edge glow */
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.3), /* Soft shadow below */
+      inset 0 1px 2px rgba(255, 255, 255, 0.4), /* Soft inner glow / Top light */
+      inset 0 -1px 2px rgba(0, 212, 255, 0.2), /* Bottom inner glow */
+      0 0 15px rgba(0, 212, 255, 0.4); /* Outer blue glow */
+      
+    color: white;
+  }
+  
+  /* Glossy reflection on the top */
+  .btn-glass-premium::before {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-1/2 pointer-events-none;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%);
+  }
+
+  .btn-glass-premium::after {
+    content: '';
+    @apply absolute top-0 left-0 w-[50%] h-full pointer-events-none;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: glass-shine 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Hover state */
+  .btn-glass-premium:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+    box-shadow: 
+      0 12px 40px 0 rgba(0, 0, 0, 0.4), 
+      inset 0 1px 2px rgba(255, 255, 255, 0.5), 
+      inset 0 -1px 2px rgba(0, 212, 255, 0.3), 
+      0 0 25px rgba(0, 212, 255, 0.6); /* Blue glow increases */
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+  }
+
+  /* Active/Pressed state: Scale to 95%, soft bounce */
+  .btn-glass-premium:active {
+    transform: scale(0.95);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+      0 4px 15px 0 rgba(0, 0, 0, 0.5), 
+      inset 0 1px 5px rgba(0, 0, 0, 0.2), 
+      inset 0 1px 2px rgba(255, 255, 255, 0.3), 
+      0 0 35px rgba(0, 212, 255, 0.8); /* Stronger glow when pressed */
+  }
+
+  /* Typography glow and Icon styling */
+  .glass-text-glow {
+    font-weight: 500;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(0, 212, 255, 0.4);
+  }
+
+  .btn-glass-circular {
+    border-radius: 50%;
+  }
+
+  .glass-dpad {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+      0 10px 40px 0 rgba(0, 0, 0, 0.4), 
+      inset 0 1px 2px rgba(255, 255, 255, 0.3),
+      0 0 20px rgba(0, 212, 255, 0.3);
+  }
+}
+
+/* Custom fade animations */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes glass-shine {
+  0% { transform: translateX(-200%) skewX(-30deg); }
+  10% { transform: translateX(200%) skewX(-30deg); }
+  100% { transform: translateX(200%) skewX(-30deg); }
+}

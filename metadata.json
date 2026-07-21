@@ -1,0 +1,10 @@
+{
+  "name": "Remix: Osama Remote Control",
+  "description": "A professional Smart TV remote application simulation supporting major TV brands, featuring full Arabic and English translation, voice welcomes, custom themes, and official pairing protocols.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
